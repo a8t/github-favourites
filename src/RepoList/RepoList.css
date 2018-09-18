@@ -1,0 +1,17 @@
+.repo-list {
+  color: #555;
+}
+
+.repo-list--row > td {
+  width: 10vw;
+  min-width: 100px;
+}
+
+.repo-list--header > th {
+  padding-bottom: 15px;
+}
+
+.action-text {
+  color: var(--main-color);
+  text-decoration: underline;
+}

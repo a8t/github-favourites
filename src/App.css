@@ -1,0 +1,40 @@
+.App {
+  --main-color: #7433f1;
+  --header-height: 90;
+  text-align: left;
+}
+
+.App-header {
+  background-color: var(--main-color);
+  height: calc(var(--header-height) * 1px);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: calc(100vh - calc(var(--header-height) * 1px));
+}
+
+main > section {
+  box-sizing: border-box;
+  width: 50vw;
+  padding: 25px 50px;
+  min-width: 600px;
+}
+
+.App-favourites {
+  background: #f3ecfe;
+}
