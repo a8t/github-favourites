@@ -1,18 +1,48 @@
 import React from 'react';
 import './SearchBar.css';
 
-const delet = e => {
-  e.preventDefault();
-  console.log(e.target.previousSibling.value);
-};
+const SearchBar = props => {
+  const { handleSearch, handleClear } = props;
+  const submitSearch = async e => {
+    e.preventDefault();
+    const response = await fetch(
+      `https://api.github.com/search/repositories?q="${e.target.previousSibling.value}"`
+    );
+    const jsonResponse = await response.json();
+    const results = await Promise.all(
+      jsonResponse.items.slice(0, 10).map(async each => {
+        const tagsUrl = each.tags_url;
+        const tagsResponse = await fetch(tagsUrl);
+        const tagsJson = await tagsResponse.json();
+        const latestTag = (await tagsJson[0]) ? tagsJson[0].name : '';
+        return {
+          id: each.id,
+          name: each.full_name,
+          language: each.language,
+          latestTag: latestTag,
+        };
+      })
+    );
+    handleSearch(await results);
+  };
 
-const SearchBar = props => (
-  <form className="search-bar">
-    <input className="search-bar--input" type="text" placeholder="Search" />
-    <button className="search-bar--button" onClick={delet}>
-      Search
-    </button>
-  </form>
-);
+  return (
+    <form className="search-bar">
+      <input
+        onChange={e => {
+          if (e.target.value.length === 0) {
+            handleClear();
+          }
+        }}
+        className="search-bar--input"
+        type="text"
+        placeholder="Search"
+      />
+      <button className="search-bar--button" onClick={submitSearch}>
+        Search
+      </button>
+    </form>
+  );
+};
 
 export default SearchBar;
