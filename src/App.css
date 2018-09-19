@@ -26,13 +26,16 @@ main {
   justify-content: center;
   flex-wrap: wrap;
   min-height: calc(100vh - calc(var(--header-height) * 1px));
+  overflow: scroll;
 }
 
 main > section {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  width: 50vw;
-  padding: 25px 50px;
-  min-width: 600px;
+  padding: 25px 30px;
+  min-width: 50vw;
+  overflow: scroll;
 }
 
 .App-favourites {

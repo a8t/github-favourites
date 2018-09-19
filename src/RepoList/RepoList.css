@@ -2,14 +2,19 @@
   color: #555;
 }
 
+.repo-list td {
+  padding-bottom: 8px;
+}
+
 .repo-list--header > th {
-  width: 10vw;
   padding-right: 10px;
   padding-bottom: 15px;
-  min-width: 150px;
+  min-width: 100px;
 }
 
 .action-text {
+  min-width: 0px;
   color: var(--main-color);
   text-decoration: underline;
+  padding-right: 0px;
 }
