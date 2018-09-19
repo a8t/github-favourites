@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './RepoList.css';
 
 const RepoList = props => {
@@ -23,6 +24,18 @@ const RepoList = props => {
       </tbody>
     </table>
   );
+};
+
+RepoList.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      language: PropTypes.string.isRequired,
+      latestTag: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  actionButton: PropTypes.func.isRequired,
 };
 
 export default RepoList;

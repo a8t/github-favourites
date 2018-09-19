@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './SearchBar.css';
 
 const SearchBar = props => {
   const { handleSearch, handleClear } = props;
+
   const submitSearch = async e => {
     e.preventDefault();
     const response = await fetch(
@@ -43,6 +45,11 @@ const SearchBar = props => {
       </button>
     </form>
   );
+};
+
+SearchBar.propTypes = {
+  handleClear: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
