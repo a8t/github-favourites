@@ -15,11 +15,24 @@ describe('<RepoList>', () => {
   });
 
   it('renders action button properly', () => {
-    const div = document.createElement('div');
     const list = [{ id: 1, name: 'a', language: 'b', latestTag: 'c' }];
     const repoList = shallow(
       <RepoList list={list} actionButton={() => <div className="action" />} />
     );
     expect(repoList.contains(<div className="action" />)).toBe(true);
+  });
+
+  it('renders list appropriately', () => {
+    const emptyList = [];
+    const emptyRepoList = shallow(
+      <RepoList list={emptyList} actionButton={() => <div className="action" />} />
+    );
+    expect(emptyRepoList.find('.repo-list--row')).toHaveLength(0);
+
+    const list = [{ id: 1, name: 'a', language: 'b', latestTag: 'c' }];
+    const repoList = shallow(
+      <RepoList list={list} actionButton={() => <div className="action" />} />
+    );
+    expect(repoList.find('.repo-list--row')).toHaveLength(1);
   });
 });
